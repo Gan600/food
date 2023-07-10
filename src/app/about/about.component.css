@@ -1,0 +1,9 @@
+.section-image {
+    display: block;
+    width: 100%;
+    max-height: 300px;
+    object-fit: cover;
+    border-radius: 8px;
+    margin-top: 20px;
+  }
+  

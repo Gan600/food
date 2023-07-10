@@ -1,0 +1,53 @@
+.project-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; /* Adjust the height based on your requirements */
+  }
+  
+  .project-description {
+    max-width: 800px; /* Adjust the maximum width based on your requirements */
+    padding: 20px;
+    background-color: #f1f1f1;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+    text-align: center;
+  }
+  
+  .project-description h1 {
+    font-size: 24px;
+    margin-bottom: 20px;
+  }
+  
+  .project-description h2 {
+    font-size: 20px;
+    margin-top: 30px;
+    margin-bottom: 10px;
+  }
+  
+  .project-description p {
+    font-size: 16px;
+    margin-bottom: 15px;
+  }
+  
+  .project-description ul,
+  .project-description ol {
+    text-align: left;
+    margin-left: 40px;
+    margin-bottom: 15px;
+  }
+  
+  .project-description button {
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .project-description button:hover {
+    background-color: #0056b3;
+  }
+  

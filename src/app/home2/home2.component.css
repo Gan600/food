@@ -1,0 +1,15 @@
+.spacer {
+    flex: 1 1 auto;
+  }
+
+  body {
+    min-height: 100vh;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    /* justify-content: center; */
+    align-items: center;
+    background: url('https://st4.depositphotos.com/26566316/28362/i/1600/depositphotos_283627928-stock-photo-homeless-people-hungry-people-line.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+  }
