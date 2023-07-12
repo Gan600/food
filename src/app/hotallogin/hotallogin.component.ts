@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { CausesService } from '../causes.service';
-import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-hotallogin',
@@ -11,6 +10,7 @@ export class HotalloginComponent {
   tableData: any[] = [];
   displayedColumns: string[] = ['sno', 'disease', 'cause', 'edit'];
   newCause: any = {};
+  editMode: boolean = false;
 
   constructor(private causesService: CausesService) {}
 
@@ -18,15 +18,13 @@ export class HotalloginComponent {
     this.getCausesData();
   }
 
-  t1: any;
-
   show() {
-    this.t1 = document.querySelector('.t1');
-    const t1DisplayStyle = window.getComputedStyle(this.t1).getPropertyValue('display');
+    const t1 = document.querySelector('.t1') as HTMLElement;
+    const t1DisplayStyle = window.getComputedStyle(t1).getPropertyValue('display');
     if (t1DisplayStyle === 'none') {
-      this.t1.style.display = 'block';
+      t1.style.display = 'block';
     } else {
-      this.t1.style.display = 'none';
+      t1.style.display = 'none';
     }
   }
 
@@ -34,7 +32,6 @@ export class HotalloginComponent {
     this.causesService.getCausesData().subscribe(
       (data) => {
         this.tableData = data;
-        
       },
       (error) => {
         console.error(error);
@@ -45,13 +42,11 @@ export class HotalloginComponent {
   insertData(cause: any) {
     this.causesService.insertCause(cause).subscribe(
       (response) => {
-        // Handle the successful insert
-        console.log((response));
-        this.getCausesData(); // Refresh the data after insertion
+        console.log(response);
+        this.getCausesData();
         this.resetForm();
       },
       (error) => {
-        // Handle the error
         console.error(error);
       }
     );
@@ -60,27 +55,29 @@ export class HotalloginComponent {
   updateData(cause: any) {
     this.causesService.updateCause(cause).subscribe(
       (response) => {
-        // Handle the successful update
         console.log(response);
-        this.getCausesData(); // Refresh the data after update
+        this.getCausesData();
       },
       (error) => {
-        // Handle the error
         console.error(error);
       }
     );
   }
 
+  editData(element: any) {
+    if (this.editMode) {
+      this.updateData(element);
+    }
+    this.editMode = !this.editMode;
+  }
+
   deleteData(id: number) {
     this.causesService.deleteCause(id).subscribe(
       (response) => {
-        // Handle the successful deletion
-        console.log((response));
-        this.getCausesData(); 
-        // console.log(this.tableData);// Refresh the data after deletion
+        console.log(response);
+        this.getCausesData();
       },
       (error) => {
-        // Handle the error
         console.error(error);
       }
     );
@@ -88,7 +85,7 @@ export class HotalloginComponent {
 
   resetForm() {
     this.newCause = {};
-    this.t1.style.display = 'none';
+    const t1 = document.querySelector('.t1') as HTMLElement;
+    t1.style.display = 'none';
   }
- 
 }
