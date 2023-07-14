@@ -8,7 +8,7 @@ import { CausesService } from '../causes.service';
 })
 export class HotalloginComponent {
   tableData: any[] = [];
-  displayedColumns: string[] = ['sno', 'disease', 'cause', 'edit'];
+  displayedColumns: string[] = ['sno', 'disease', 'cause', 'address', 'phone', 'edit'];
   newCause: any = {};
   editMode: boolean = false;
 

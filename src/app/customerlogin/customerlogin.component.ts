@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CausesService } from '../causes.service';
 import { Observable } from 'rxjs';
+
 @Component({
   selector: 'app-causes',
   templateUrl: './customerlogin.component.html',
@@ -8,7 +9,7 @@ import { Observable } from 'rxjs';
 })
 export class CustomerloginComponent implements OnInit {
   tableData: any[] = [];
-  displayedColumns: string[] = ['sno', 'disease', 'cause', 'edit'];
+  displayedColumns: string[] = ['sno', 'disease', 'cause', 'address', 'phone_number', 'edit'];
   newCause: any = {};
 
   constructor(private causesService: CausesService) {}
@@ -33,7 +34,6 @@ export class CustomerloginComponent implements OnInit {
     this.causesService.getCausesData().subscribe(
       (data) => {
         this.tableData = data;
-        
       },
       (error) => {
         console.error(error);
@@ -45,7 +45,7 @@ export class CustomerloginComponent implements OnInit {
     this.causesService.insertCause(cause).subscribe(
       (response) => {
         // Handle the successful insert
-        console.log((response));
+        console.log(response);
         this.getCausesData(); // Refresh the data after insertion
         this.resetForm();
       },
@@ -74,8 +74,8 @@ export class CustomerloginComponent implements OnInit {
     this.causesService.deleteCause(id).subscribe(
       (response) => {
         // Handle the successful deletion
-        console.log((response));
-        this.getCausesData(); 
+        console.log(response);
+        this.getCausesData();
         // console.log(this.tableData);// Refresh the data after deletion
       },
       (error) => {

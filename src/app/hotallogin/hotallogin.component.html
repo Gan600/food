@@ -18,6 +18,20 @@
         <input *ngIf="editMode" type="text" [(ngModel)]="element[2]">
       </td>
     </ng-container>
+    <ng-container matColumnDef="address">
+      <th mat-header-cell *matHeaderCellDef>Address</th>
+      <td mat-cell *matCellDef="let element">
+        <ng-container *ngIf="!editMode">{{ element[3] }}</ng-container>
+        <input *ngIf="editMode" type="text" [(ngModel)]="element[3]">
+      </td>
+    </ng-container>
+    <ng-container matColumnDef="phone">
+      <th mat-header-cell *matHeaderCellDef>Phone Number</th>
+      <td mat-cell *matCellDef="let element">
+        <ng-container *ngIf="!editMode">{{ element[4] }}</ng-container>
+        <input *ngIf="editMode" type="text" [(ngModel)]="element[4]">
+      </td>
+    </ng-container>
     <ng-container matColumnDef="edit">
       <th mat-header-cell *matHeaderCellDef>Edit</th>
       <td mat-cell *matCellDef="let element">
@@ -30,8 +44,8 @@
       </td>
     </ng-container>
 
-    <tr mat-header-row *matHeaderRowDef="['sno', 'disease', 'cause', 'edit']"></tr>
-    <tr mat-row *matRowDef="let row; columns: ['sno', 'disease', 'cause', 'edit']"></tr>
+    <tr mat-header-row *matHeaderRowDef="['sno', 'disease', 'cause', 'address', 'phone', 'edit']"></tr>
+    <tr mat-row *matRowDef="let row; columns: ['sno', 'disease', 'cause', 'address', 'phone', 'edit']"></tr>
   </table>
   <button mat-raised-button color="primary" style="float: right;" (click)="show()">Add data</button><br><br>
   
@@ -46,6 +60,8 @@
         <td><input type="text" name="hotalid" placeholder="Enter Hotel ID" [(ngModel)]="newCause.hotalid"></td>
         <td><input type="text" name="hotal_name" placeholder="Enter Hotel Name" [(ngModel)]="newCause.hotal_name"></td>
         <td><input type="text" name="foodtype" placeholder="Enter Food Type" [(ngModel)]="newCause.foodtype"></td>
+        <td><input type="text" name="address" placeholder="Enter Address" [(ngModel)]="newCause.address"></td>
+        <td><input type="text" name="phone" placeholder="Enter Phone Number" [(ngModel)]="newCause.phone"></td>
         <button mat-raised-button color="accent" style="float: right;align-self: center;" (click)="insertData(newCause)">Submit</button>
       </tr>
     </table>
