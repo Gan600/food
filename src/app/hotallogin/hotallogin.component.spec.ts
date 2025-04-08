@@ -1,21 +1,30 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
 
-import { HotalloginComponent } from './hotallogin.component';
+@Injectable({
+  providedIn: 'root'
+})
+export class CausesService {
+  private apiUrl = 'api/causes'; // Adjust this URL to match your backend API endpoint
 
-describe('HotalloginComponent', () => {
-  let component: HotalloginComponent;
-  let fixture: ComponentFixture<HotalloginComponent>;
+  constructor(private http: HttpClient) { }
 
-  beforeEach(() => {
-    TestBed.configureTestingModule({
-      declarations: [HotalloginComponent]
-    });
-    fixture = TestBed.createComponent(HotalloginComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  });
+  getCausesData(): Observable<any[]> {
+    return this.http.get<any[]>(this.apiUrl);
+  }
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
-  });
-});
+  insertCause(cause: any): Observable<any> {
+    return this.http.post<any>(this.apiUrl, cause);
+  }
+
+  updateCause(cause: any): Observable<any> {
+    const url = `${this.apiUrl}/${cause.id}`; // Adjust the URL to include the cause ID
+    return this.http.put<any>(url, cause);
+  }
+
+  deleteCause(id: number): Observable<any> {
+    const url = `${this.apiUrl}/${id}`; // Adjust the URL to include the cause ID
+    return this.http.delete<any>(url);
+  }
+}

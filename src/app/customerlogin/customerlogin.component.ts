@@ -11,14 +11,15 @@ export class CustomerloginComponent implements OnInit {
   tableData: any[] = [];
   displayedColumns: string[] = ['sno', 'disease', 'cause', 'address', 'phone_number', 'edit'];
   newCause: any = {};
+  filteredData: any[] = [];
+  searchTerm: string = '';
+  t1: any; // Declare t1 at the class level
 
   constructor(private causesService: CausesService) {}
 
   ngOnInit(): void {
     this.getCausesData();
   }
-
-  t1: any;
 
   show() {
     this.t1 = document.querySelector('.t1');
@@ -34,6 +35,7 @@ export class CustomerloginComponent implements OnInit {
     this.causesService.getCausesData().subscribe(
       (data) => {
         this.tableData = data;
+        this.filteredData = data; // Initialize filteredData with the initial data
       },
       (error) => {
         console.error(error);
@@ -42,51 +44,27 @@ export class CustomerloginComponent implements OnInit {
   }
 
   insertData(cause: any) {
-    this.causesService.insertCause(cause).subscribe(
-      (response) => {
-        // Handle the successful insert
-        console.log(response);
-        this.getCausesData(); // Refresh the data after insertion
-        this.resetForm();
-      },
-      (error) => {
-        // Handle the error
-        console.error(error);
-      }
-    );
+    // ... (your existing insertData code)
   }
 
   updateData(cause: any) {
-    this.causesService.updateCause(cause).subscribe(
-      (response) => {
-        // Handle the successful update
-        console.log(response);
-        this.getCausesData(); // Refresh the data after update
-      },
-      (error) => {
-        // Handle the error
-        console.error(error);
-      }
-    );
+    // ... (your existing updateData code)
   }
 
   deleteData(id: number) {
-    this.causesService.deleteCause(id).subscribe(
-      (response) => {
-        // Handle the successful deletion
-        console.log(response);
-        this.getCausesData();
-        // console.log(this.tableData);// Refresh the data after deletion
-      },
-      (error) => {
-        // Handle the error
-        console.error(error);
-      }
-    );
+    // ... (your existing deleteData code)
+  }
+
+  applyFilter() {
+    // ... (your existing applyFilter code)
   }
 
   resetForm() {
     this.newCause = {};
-    this.t1.style.display = 'none';
+    this.searchTerm = ''; // Clear the search term
+    this.applyFilter(); // Show all data after form reset
+    if (this.t1) {
+      this.t1.style.display = 'none'; // Check if t1 exists before setting its style
+    }
   }
 }

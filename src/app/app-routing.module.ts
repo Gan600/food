@@ -43,7 +43,7 @@ const routes: Routes = [
       component:ServicesComponent,
       path:'services'
       },
-      
+
       {
         component:AdminloginComponent,
         path:'adminlogin'
